@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 
 #gem puma for faster ruby server
+gem 'foreman'
 gem 'puma'
 
 group :doc do
