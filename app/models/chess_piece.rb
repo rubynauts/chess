@@ -1,4 +1,4 @@
 class ChessPiece < ActiveRecord::Base
-  belongs_to :games
-  belongs_to :players
+  belongs_to :game
+  belongs_to :user
 end

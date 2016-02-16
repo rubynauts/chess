@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20160216161933) do
   create_table "chess_pieces", force: true do |t|
     t.string   "name"
     t.string   "color"
+    t.integer  "game_id"
+    t.integer  "user_id"
     t.integer  "position_x"
     t.integer  "position_y"
     t.datetime "created_at"
