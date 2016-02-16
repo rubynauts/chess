@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160215095631) do
   create_table "chess_pieces", force: true do |t|
     t.string   "name"
     t.string   "color"
-    t.integer  "poisition_x"
+    t.integer  "position_x"
     t.integer  "position_y"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,12 +28,6 @@ ActiveRecord::Schema.define(version: 20160215095631) do
   create_table "games", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "players", force: true do |t|
-    t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
