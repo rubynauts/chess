@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 1.2'
 #devise gem
 gem 'devise'
 
+#gem puma for faster ruby server
+gem 'foreman'
+gem 'puma'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
