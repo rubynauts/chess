@@ -2,8 +2,13 @@ class ChessPiece < ActiveRecord::Base
   belongs_to :game
   belongs_to :user
 
+  # def initialize(x,y)
+  #   self.position_x = x
+  #   self.position_y = y
+  # end
 
-  def horiztonal_move?(endpoint_x, endpoint_y)
+
+  def horizontal_move?(endpoint_x, endpoint_y)
     position_x != endpoint_x
   end
 
@@ -20,7 +25,7 @@ class ChessPiece < ActiveRecord::Base
       return horizontally_obstructed?(endpoint_x, endpoint_y)
     elsif vertical_move?(endpoint_x, endpoint_y)
       return vertically_obstructed?(endpoint_x, endpoint_y)
-    elsif diagonally_obstructed?(endpoint_x, endpoint_y)
+    elsif diagonal_move?(endpoint_x, endpoint_y)
       return diagonally_obstructed?(endpoint_x, endpoint_y)
     else
       return 'Invalid'
