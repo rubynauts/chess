@@ -37,4 +37,7 @@ RSpec.describe ChessPiece do
     end
   end
 
+
+  
+
 end
