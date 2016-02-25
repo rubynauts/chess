@@ -15,7 +15,7 @@ class ChessPiece < ActiveRecord::Base
       if game.piece_in_square(position_x, y)
         return 'Invalid Move'
       else
-        valid_move!
+        return 'Valid Move!'
       end
   end
 
