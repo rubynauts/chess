@@ -17,6 +17,7 @@ class ChessPiece < ActiveRecord::Base
       else
         return 'Valid Move!'
       end
+    end
   end
 
   def diagonal_move?(endpoint_x, endpoint_y)
