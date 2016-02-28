@@ -11,13 +11,13 @@ class ChessPiece < ActiveRecord::Base
   end
 
   def vertically_obstructed?(endpiont_x, endpoint_y)
+    is_obstructed = false
     ((position_y + 1)..endpoint_y).each do |y|
       if game.piece_in_square(endpoint_x, y)
-        return true
-      else
-        false
+        return is_obstructed = true
       end
     end
+    is_obstructed
   end
 
   def diagonal_move?(endpoint_x, endpoint_y)
