@@ -41,12 +41,12 @@ RSpec.describe ChessPiece do
     context "given a piece at [4, 4]" do
       let(:piece) {ChessPiece.create(position_x: 4, position_y: 4)}
       let(:second_piece) {ChessPiece.create(position_x: 4, position_y: 6)}
-      let(:piece.vertical_move? === true)
+      # let(:piece.vertical_move? === true)
       it "will return true when trying to move to [4,6]" do
-        expect(piece.vertically_obstructed?(4,7)).to be_truthy
+        expect(piece.is_obstructed?(4,7)).to be_truthy
       end
       it "will return false when trying to move to [4,5]" do
-        expect(piece.vertically_obstructed?(4,5)).to be_falsey
+        expect(piece.is_obstructed?(4,5)).to be_falsey
       end
     end
   end

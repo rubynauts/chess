@@ -12,7 +12,7 @@ class ChessPiece < ActiveRecord::Base
 
   def vertically_obstructed?(endpiont_x, endpoint_y)
     ((position_y + 1)..endpoint_y).each do |y|
-      if game.piece_in_square(position_x, y)
+      if game.piece_in_square(endpoint_x, y)
         return true
       else
         false
