@@ -1,7 +1,11 @@
+before_script:
+  - psql -c 'create database rubynauts_test;' -U postgres
+  - bin/rake db:migrate RAILS_ENV=test
+
 language: ruby
 
 rvm:
   - 2.2.2
 
 services:
-  - postgresql
+- postgresql
