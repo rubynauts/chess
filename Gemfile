@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Use for CSS framework
+gem 'bourbon'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
