@@ -13,8 +13,8 @@ class ChessPiece < ActiveRecord::Base
   def vertically_obstructed?(endpoint_x, endpoint_y)
     is_obstructed = false
     ((position_y + 1)..endpoint_y).find do |y|
-      if game.piece_in_square(endpoint_x, y)
-        return is_obstructed = true
+      if game.piece_in_square?(endpoint_x, y) === true
+        is_obstructed = true
       end
     end
     is_obstructed

@@ -5,6 +5,6 @@ class Game < ActiveRecord::Base
 
 
   def piece_in_square?(x,y)
-    chess_piece.find_by position_x: x, position_y: y
+    chess_pieces.find_by(position_x: x, position_y: y)
   end
 end
