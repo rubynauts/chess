@@ -10,6 +10,12 @@ class ChessPiece < ActiveRecord::Base
     (position_y != endpoint_y) && (position_x === endpoint_x)
   end
 
+  def vertically_obstructed?(endpoint_x, endpoint_y)
+    ((position_y + 1)..endpoint_y).find do |y|
+      game.piece_in_square?(endpoint_x, y)
+    end
+  end
+
   def diagonal_move?(endpoint_x, endpoint_y)
     (position_x != endpoint_x) && (position_y != endpoint_y)
   end
@@ -22,7 +28,7 @@ class ChessPiece < ActiveRecord::Base
     elsif diagonal_move?(endpoint_x, endpoint_y)
       return diagonally_obstructed?(endpoint_x, endpoint_y)
     else
-      return 'Invalid'
+      return 'Invalid Move'
     end
   end
 

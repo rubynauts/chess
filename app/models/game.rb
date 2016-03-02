@@ -3,4 +3,11 @@ class Game < ActiveRecord::Base
   has_many :users, through: :matches
   has_many :chess_pieces
 
+<<<<<<< HEAD
+=======
+
+  def piece_in_square?(x,y)
+    chess_pieces.find_by(position_x: x, position_y: y)
+  end
+>>>>>>> f290ac591ea1ad9178430fdeeadd572c7fdb087a
 end
