@@ -78,7 +78,7 @@ RSpec.describe ChessPiece do
         second_piece
         expect(piece.is_obstructed?(7,4)).to be_truthy
       end
-      it "will return false when trying to move to [5,4]" do
+      it "will return false when trying to move to [2,4]" do
         second_piece
         expect(piece.is_obstructed?(2,4)).to be_falsey
       end
