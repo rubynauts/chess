@@ -11,14 +11,26 @@ class ChessPiece < ActiveRecord::Base
   end
 
   def horizontally_obstructed?(endpoint_x, endpoint_y)
-    ((position_x + 1)..endpoint_x).find do |x|
-      game.piece_in_square?(x, endpoint_y)
+    if endpoint_x > position_x
+      ((position_x + 1)..endpoint_x).find do |x|
+        game.piece_in_square?(x, endpoint_y)
+      end
+    else
+      ((position_x - 1).downto(endpoint_x)).find do |x|
+        game.piece_in_square?(x, endpoint_y)
+      end
     end
   end
 
   def vertically_obstructed?(endpoint_x, endpoint_y)
-    ((position_y + 1)..endpoint_y).find do |y|
-      game.piece_in_square?(endpoint_x, y)
+    if endpoint_y > position_y
+      ((position_y + 1)..endpoint_y).find do |y|
+        game.piece_in_square?(endpoint_x, y)
+      end
+    else
+      ((position_y - 1).downto(endpoint_y)).find do |y|
+        game.piece_in_square?(endpoint_x, y)
+      end
     end
   end
 
