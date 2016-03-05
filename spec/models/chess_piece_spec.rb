@@ -1,5 +1,4 @@
 require "rails_helper"
-require "pry"
 
 RSpec.describe ChessPiece do
   describe "#horizontal_move?" do
