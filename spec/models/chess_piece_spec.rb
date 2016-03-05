@@ -93,7 +93,37 @@ RSpec.describe ChessPiece do
     end
   end
 
-
+  describe "#is_obstructed?" do
+    context "given a piece at [0.0] and a piece at [2,2]" do
+      let(:game) {Game.create}
+      let(:piece) {ChessPiece.create(position_x: 0, position_y: 0, game: game)}
+      let(:second_piece) {ChessPiece.create(position_x: 2, position_y: 2, game: game)}
+      it "will return true when trying to move to [4,4]" do 
+        second_piece
+        expect(piece.is_obstructed?(4,4)).to be_truthy
+      end
+      it "will return false when trying to move to [1,1]" do
+        second_piece
+        expect(piece.is_obstructed?(1,1)).to be_falsey
+      end
+    end
+  end
+  
+  describe "#is_obstructed?" do
+    context "given a piece at [4,4] and a piece at [2,2]" do
+      let(:game) {Game.create}
+      let(:piece) {ChessPiece.create(position_x: 4, position_y: 4, game: game)}
+      let(:second_piece) {ChessPiece.create(position_x: 2, position_y: 2, game: game)}
+      it "will return true when trying to move to [0,0]" do 
+        second_piece
+        expect(piece.is_obstructed?(0,0)).to be_truthy
+      end
+      it "will return false when trying to move to [3,3]" do
+        second_piece
+        expect(piece.is_obstructed?(3,3)).to be_falsey
+      end
+    end
+  end
   
 
 end
