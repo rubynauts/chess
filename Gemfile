@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
+# Use for CSS framework
+gem 'bourbon'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.2.5'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -33,6 +36,9 @@ gem 'devise'
 #gem puma for faster ruby server
 gem 'foreman'
 gem 'puma'
+
+#prying the error
+gem 'pry'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
