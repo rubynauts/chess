@@ -3,39 +3,51 @@ class Game < ActiveRecord::Base
   has_many :users, through: :matches
   has_many :chess_pieces
 
-  def populate_board
-  	Rook.create(x_position: 0, y_position: 0, color: :black)
-  	Knight.create(x_position: 0, y_position: 1, color: :black)
-  	Bishop.create(x_position: 0, y_position: 2, color: :black)
-  	Queen.create(x_position: 0, y_position: 3, color: :black)
-  	King.create(x_position: 0, y_position: 4, color: :black)
-  	Bishop.create(x_position: 0, y_position: 5, color: :black)
-  	Knight.create(x_position: 0, y_position: 6, color: :black)
-  	Rook.create(x_position: 0, y_position: 7, color: :black)
-  	Pawn.create(x_position: 1, y_position: 0, color: :black)
-  	Pawn.create(x_position: 1, y_position: 1, color: :black)
-  	Pawn.create(x_position: 1, y_position: 2, color: :black)
-  	Pawn.create(x_position: 1, y_position: 3, color: :black)
-  	Pawn.create(x_position: 1, y_position: 4, color: :black)
-  	Pawn.create(x_position: 1, y_position: 5, color: :black)
-  	Pawn.create(x_position: 1, y_position: 6, color: :black)
-  	Pawn.create(x_position: 1, y_position: 7, color: :black)
+  def piece_in_square?(x,y)
+    chess_pieces.find_by(position_x: x, position_y: y)
+  end
 
-  	Rook.create(x_position: 0, y_position: 0, color: :white)
-  	Knight.create(x_position: 0, y_position: 1, color: :white)
-  	Bishop.create(x_position: 0, y_position: 2, color: :white)
-  	Queen.create(x_position: 0, y_position: 3, color: :white)
-  	King.create(x_position: 0, y_position: 4, color: :white)
-  	Bishop.create(x_position: 0, y_position: 5, color: :white)
-  	Knight.create(x_position: 0, y_position: 6, color: :white)
-  	Rook.create(x_position: 0, y_position: 7, color: :white)
-  	Pawn.create(x_position: 1, y_position: 0, color: :white)
-  	Pawn.create(x_position: 1, y_position: 1, color: :white)
-  	Pawn.create(x_position: 1, y_position: 2, color: :white)
-  	Pawn.create(x_position: 1, y_position: 3, color: :white)
-  	Pawn.create(x_position: 1, y_position: 4, color: :white)
-  	Pawn.create(x_position: 1, y_position: 5, color: :white)
-  	Pawn.create(x_position: 1, y_position: 6, color: :white)
-  	Pawn.create(x_position: 1, y_position: 7, color: :white)
+  def populate_board
+    Rook.create(position_x: 0, position_y: 0, color: 'White')
+    Rook.create(position_x: 7, position_y: 0, color: 'White')
+
+    Knight.create(position_x: 1, position_y: 0, color: 'White')
+    Knight.create(position_x: 6, position_y: 0, color: 'White')
+
+    Bishop.create(position_x: 2, position_y: 0, color: 'White')
+    Bishop.create(position_x: 5, position_y: 0, color: 'White')
+
+    Queen.create(position_x: 3, position_y: 0, color: 'White')
+    King.create(position_x: 4, position_y: 0, color: 'White')
+
+    (0..7).each do |i|
+      Pawn.create (
+        position_x: i,
+        position_y: 1,
+        color: 'White',
+        game_id: game.id
+        )
+      end
+
+    Rook.create(position_x: 0, position_y: 7, color: 'Black')
+    Rook.create(position_x: 7, position_y: 7, color: 'Black')
+
+    Knight.create(position_x: 1, position_y: 7, color: 'Black')
+    Knight.create(position_x: 6, position_y: 7, color: 'Black')
+
+    Bishop.create(position_x: 2, position_y: 7, color: 'Black')
+    Bishop.create(position_x: 5, position_y: 7, color: 'Black')
+
+    Queen.create(position_x: 3, position_y: 7, color: 'Black')
+    King.create(position_x: 4, position_y: 7, color: 'Black')
+
+    (0..7).each do |i|
+      Pawn.create (
+        position_x: i,
+        position_y: 6,
+        color: 'Black',
+        game_id: game.id
+        )
+      end
   end
 end
