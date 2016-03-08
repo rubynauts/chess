@@ -4,6 +4,10 @@ class ChessPiece < ActiveRecord::Base
   belongs_to :game
   belongs_to :user
 
+  def legal_move?(endpoint_x, endpoint_y)
+    (endpoint_x >= 0) && (endpoint_x <= 7) && (endpoint_y >= 0) && (endpoint_y <= 7)
+  end
+
   def horizontal_move?(endpoint_x, endpoint_y)
     (position_x != endpoint_x) && (position_y === endpoint_y)
   end
