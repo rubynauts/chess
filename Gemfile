@@ -37,6 +37,9 @@ gem 'devise'
 gem 'foreman'
 gem 'puma'
 
+#prying the error
+gem 'pry'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

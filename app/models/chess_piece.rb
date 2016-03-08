@@ -1,6 +1,12 @@
+require 'pry'
+
 class ChessPiece < ActiveRecord::Base
   belongs_to :game
   belongs_to :user
+
+  def legal_move?(endpoint_x, endpoint_y)
+    (endpoint_x >= 0) && (endpoint_x <= 7) && (endpoint_y >= 0) && (endpoint_y <= 7)
+  end
 
   def horizontal_move?(endpoint_x, endpoint_y)
     (position_x != endpoint_x) && (position_y === endpoint_y)
@@ -10,14 +16,60 @@ class ChessPiece < ActiveRecord::Base
     (position_y != endpoint_y) && (position_x === endpoint_x)
   end
 
+  def horizontally_obstructed?(endpoint_x, endpoint_y)
+    if endpoint_x > position_x
+      ((position_x + 1)..endpoint_x).find do |x|
+        game.piece_in_square?(x, endpoint_y)
+      end
+    else
+      ((position_x - 1).downto(endpoint_x)).find do |x|
+        game.piece_in_square?(x, endpoint_y)
+      end
+    end
+  end
+
+  def diagonally_obstructed?(endpoint_x, endpoint_y)
+    if (endpoint_x > position_x) && (endpoint_y > position_y)
+      y_position = position_y
+      ((position_x + 1)..endpoint_x).find do |x|
+        y_position = (y_position + 1)
+        game.piece_in_square?(x,y_position)
+      end
+    elsif (endpoint_x < position_x) && (endpoint_y < position_y)
+      y_position = position_y
+      ((position_x - 1).downto(endpoint_x)).find do |x|
+        y_position = (y_position - 1)
+        game.piece_in_square?(x,y_position)
+      end
+    elsif (endpoint_x > position_x) && (endpoint_y < position_y)
+      y_position = position_y
+      ((position_x + 1)..endpoint_x).find do |x|
+        y_position = (y_position - 1)
+        game.piece_in_square?(x,y_position)
+      end
+    elsif (endpoint_x < position_x) && (endpoint_y > position_y)
+      y_position = (position_y)
+      ((position_x - 1).downto(endpoint_x)).find do |x|
+        y_position = (y_position + 1)
+        game.piece_in_square?(x,y_position)
+      end
+    end
+  end
+
   def vertically_obstructed?(endpoint_x, endpoint_y)
-    ((position_y + 1)..endpoint_y).find do |y|
-      game.piece_in_square?(endpoint_x, y)
+    if endpoint_y > position_y
+      ((position_y + 1)..endpoint_y).find do |y|
+        game.piece_in_square?(endpoint_x, y)
+      end
+    else
+      ((position_y - 1).downto(endpoint_y)).find do |y|
+        game.piece_in_square?(endpoint_x, y)
+      end
     end
   end
 
   def diagonal_move?(endpoint_x, endpoint_y)
-    (position_x != endpoint_x) && (position_y != endpoint_y)
+    (endpoint_x - position_x) == (endpoint_y - position_y)
   end
 
   def is_obstructed?(endpoint_x, endpoint_y)
