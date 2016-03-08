@@ -1,3 +1,5 @@
+require 'pry'
+
 class ChessPiece < ActiveRecord::Base
   belongs_to :game
   belongs_to :user
@@ -18,6 +20,34 @@ class ChessPiece < ActiveRecord::Base
     else
       ((position_x - 1).downto(endpoint_x)).find do |x|
         game.piece_in_square?(x, endpoint_y)
+      end
+    end
+  end
+
+  def diagonally_obstructed?(endpoint_x, endpoint_y)
+    if (endpoint_x > position_x) && (endpoint_y > position_y)
+      y_position = position_y
+      ((position_x + 1)..endpoint_x).find do |x|
+        y_position = (y_position + 1)
+        game.piece_in_square?(x,y_position)
+      end
+    elsif (endpoint_x < position_x) && (endpoint_y < position_y)
+      y_position = position_y
+      ((position_x - 1).downto(endpoint_x)).find do |x|
+        y_position = (y_position - 1)
+        game.piece_in_square?(x,y_position)
+      end
+    elsif (endpoint_x > position_x) && (endpoint_y < position_y)
+      y_position = position_y
+      ((position_x + 1)..endpoint_x).find do |x|
+        y_position = (y_position - 1)
+        game.piece_in_square?(x,y_position)
+      end
+    elsif (endpoint_x < position_x) && (endpoint_y > position_y)
+      y_position = (position_y)
+      ((position_x - 1).downto(endpoint_x)).find do |x|
+        y_position = (y_position + 1)
+        game.piece_in_square?(x,y_position)
       end
     end
   end
