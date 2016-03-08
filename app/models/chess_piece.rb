@@ -35,7 +35,7 @@ class ChessPiece < ActiveRecord::Base
   end
 
   def diagonal_move?(endpoint_x, endpoint_y)
-    (position_x != endpoint_x) && (position_y != endpoint_y)
+    (endpoint_x - position_x) == (endpoint_y - position_y)
   end
 
   def is_obstructed?(endpoint_x, endpoint_y)
