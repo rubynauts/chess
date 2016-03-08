@@ -21,12 +21,7 @@ class Game < ActiveRecord::Base
     King.create(position_x: 4, position_y: 0, color: 'White')
 
     (0..7).each do |i|
-      Pawn.create {
-        position_x: i,
-        position_y: 1,
-        color: 'White',
-        game_id: game.id
-      }
+      Pawn.create(position_x: i, position_y: 1, color: 'White', game_id: game.id)
     end
 
     Rook.create(position_x: 0, position_y: 7, color: 'Black')
@@ -42,12 +37,7 @@ class Game < ActiveRecord::Base
     King.create(position_x: 4, position_y: 7, color: 'Black')
 
     (0..7).each do |i|
-      Pawn.create {
-        position_x: i,
-        position_y: 6,
-        color: 'Black',
-        game_id: game.id
-      }
+      Pawn.create(position_x: i, position_y: 6, color: 'Black', game_id: game.id)
     end
   end
 
