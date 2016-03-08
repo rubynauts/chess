@@ -98,7 +98,7 @@ RSpec.describe ChessPiece do
       let(:game) {Game.create}
       let(:piece) {ChessPiece.create(position_x: 0, position_y: 0, game: game)}
       let(:second_piece) {ChessPiece.create(position_x: 2, position_y: 2, game: game)}
-      it "will return true when trying to move to [4,4]" do 
+      it "will return true when trying to move to [4,4]" do
         second_piece
         expect(piece.is_obstructed?(4,4)).to be_truthy
       end
@@ -108,13 +108,13 @@ RSpec.describe ChessPiece do
       end
     end
   end
-  
+
   describe "#is_obstructed?" do
     context "given a piece at [4,4] and a piece at [2,2]" do
       let(:game) {Game.create}
       let(:piece) {ChessPiece.create(position_x: 4, position_y: 4, game: game)}
       let(:second_piece) {ChessPiece.create(position_x: 2, position_y: 2, game: game)}
-      it "will return true when trying to move to [0,0]" do 
+      it "will return true when trying to move to [0,0]" do
         second_piece
         expect(piece.is_obstructed?(0,0)).to be_truthy
       end
@@ -124,6 +124,21 @@ RSpec.describe ChessPiece do
       end
     end
   end
-  
+
+  describe "#legal_move?" do
+    context "given a piece at [4, 4]" do
+      let(:piece) {ChessPiece.create(position_x: 4, position_y: 4)}
+      it "will return true when trying to move to [6,6]" do
+        expect(piece.legal_move?(6,6)).to be_truthy
+      end
+      it "will return false when trying to move to [-1,-1]" do
+        expect(piece.legal_move?(-1,-1)).to be_falsey
+      end
+      it "will return false when trying to move to [8,8]" do
+        expect(piece.legal_move?(8,8)).to be_falsey
+      end
+    end
+  end
+
 
 end
