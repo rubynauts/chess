@@ -84,10 +84,10 @@ class ChessPiece < ActiveRecord::Base
     end
   end
 
-  def capture?(endpoint_x, endpoint_y)
+  def capture(endpoint_x, endpoint_y)
     other_piece = game.piece_in_square?(endpoint_x, endpoint_y)
 
-    if chess_piece.color != other_piece.color
+    if self.color != other_piece.color
       return true
     else
       return false
