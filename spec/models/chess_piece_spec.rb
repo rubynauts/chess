@@ -150,7 +150,7 @@ RSpec.describe ChessPiece do
         second_piece
         expect(piece.capture(5,5)).to be_truthy
       end
-      it "will return false if piece.color == second_piece.color" do
+      it "will return false if piece.color == third_piece.color" do
         third_piece
         expect(piece.capture(3,3)).to be_falsey
       end
