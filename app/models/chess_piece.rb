@@ -88,7 +88,7 @@ class ChessPiece < ActiveRecord::Base
     opponent_piece = game.piece_in_square?(endpoint_x, endpoint_y)
 
     if self.color != opponent_piece.color
-      return true
+      opponent_piece.destroy
     else 
       return false
     end
