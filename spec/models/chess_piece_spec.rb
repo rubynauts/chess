@@ -140,5 +140,22 @@ RSpec.describe ChessPiece do
     end
   end
 
+  describe "#capture" do
+    context "given a black piece at [4,4] and a white piece at [5,5]" do
+      let(:game) {Game.create}
+      let(:piece) {ChessPiece.create(position_x: 4, position_y: 4, game: game, color: "Black")}
+      let(:second_piece) {ChessPiece.create(position_x: 5, position_y: 5, game: game, color: "White")}
+      let(:third_piece) {ChessPiece.create(position_x: 3, position_y: 3, game:game, color: "Black")}
+      it "will return true if piece.color != second_piece.color" do
+        second_piece
+        expect(piece.capture(5,5)).to be_truthy
+      end
+      it "will return false if piece.color == third_piece.color" do
+        third_piece
+        expect(piece.capture(3,3)).to be_falsey
+      end
+    end
+  end
+
 
 end

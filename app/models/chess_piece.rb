@@ -84,4 +84,14 @@ class ChessPiece < ActiveRecord::Base
     end
   end
 
+  def capture(endpoint_x, endpoint_y)
+    opponent_piece = game.piece_in_square?(endpoint_x, endpoint_y)
+
+    if self.color != opponent_piece.color
+      opponent_piece.destroy
+    else 
+      return false
+    end
+  end
+
 end
