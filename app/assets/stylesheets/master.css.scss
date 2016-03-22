@@ -21,3 +21,7 @@
 .clearfix {
   overflow: auto;
 }
+
+&.selected {
+  background-color: yellow;
+}
