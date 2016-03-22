@@ -23,7 +23,7 @@ class GamesController < ApplicationController
     private
 
     def find_piece
-      @game = Game.includes(:chess_piece).find(params[:id])
+      @game = Game.includes(:chess_pieces).find(params[:id])
     end
 
 end
