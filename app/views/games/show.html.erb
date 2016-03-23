@@ -5,7 +5,18 @@
         <% colors = row.odd? ? ["black", "white"] : ["white", "black"] %>
 
         <% (0..7).each do |col| %>
-          <div class="<%= cycle(*colors) %>"></div>
+          <% piece = @game.piece_in_square?(col, row) %>
+
+          <% if piece %>
+            <% selected_class = piece == @selected_piece ? "selected" : ""  %>
+            <%= link_to "",
+              chess_piece_chosen_piece_path(@game, piece),
+              class: "#{cycle(*colors)} #{selected_class}",
+              method: "POST" %>
+
+          <% else %>
+            <div class="<%= cycle(*colors) %>"></div>
+          <% end %>
         <% end %>
 
       </div>
