@@ -161,8 +161,8 @@ RSpec.describe ChessPiece do
     context "given a black piece at [4,4] and a white piece at [5,5] and a black piece at [3,3]" do
       let(:game) {Game.create}
       let(:piece) {ChessPiece.create(position_x: 4, position_y: 4, game: game, color: "Black")}
-      let(:second_piece) {ChessPiece.create(position_x: 5, position_y: 5, game: game, color: "White")}
-      let(:third_piece) {ChessPiece.create(position_x: 3, position_y: 3, game: game, color: "Black")}
+      let(:second_piece) {ChessPiece.create(position_x: 4, position_y: 6, game: game, color: "White")}
+      let(:third_piece) {ChessPiece.create(position_x: 4, position_y: 3, game: game, color: "Black")}
       it "will update piece to new coordinates and eat piece" do
         piece.take_piece(second_piece.position_x, second_piece.position_y)
 
